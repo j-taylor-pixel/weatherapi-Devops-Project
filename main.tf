@@ -15,6 +15,12 @@ terraform {
   required_version = ">= 1.1.0"
 }
 
+variable "imagebuild" {
+  type        = string
+  description = "latest image build number"
+}
+
+
 provider "azurerm" {
     #version = "3.0.2"
     features {}
@@ -36,7 +42,7 @@ resource "azurerm_container_group" "cg_name" {
 
     container {
         name                = "weatherapi"
-        image               = "j1taylor1/weatherapi"
+        image               = "j1taylor1/weatherapi:${var.imagebuild}"
         cpu                 = "1"
         memory              = "1"
 
