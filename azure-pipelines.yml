@@ -27,4 +27,27 @@ stages:
         repository: 'j1taylor1/weatherapi'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
+- stage: Provision
+  displayName: "Terraforming on azure..."
+  dependsOn: Build
+  jobs: 
+  - job: Provision
+    displayName: "Provisioning container instance"
+    pool: Default
+    variables:
+    - group: TFEnvVars
+    steps:
+    - script: |
+      set -e
 
+      terraform init -input=false
+
+      
+      terraform apply -input=false -auto-approve
+    name: RunTerraform
+    displayName: "Run Terraform"
+    env:
+      ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      ARM_TENANT_ID: $(ARM_TENANT_ID)
+      ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
