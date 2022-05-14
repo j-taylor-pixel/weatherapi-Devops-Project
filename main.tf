@@ -27,8 +27,8 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg_name" {
-    #name = "jtaylor_resource_grp"
-    name = "${var.project_name}-${var.environment}-rg"
+    name = "jtaylor_resource_grp"
+    #name = "${var.project_name}-${var.environment}-rg"
     location = "East US 2"
 }
 
