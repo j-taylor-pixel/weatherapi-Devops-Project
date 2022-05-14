@@ -44,7 +44,7 @@ stages:
 
         terraform init -input=false
 
-        terraform import azurerm_resource_group.rg_name /subscriptions/27043551-015b-4974-8b81-0f41830b002e/resourceGroups/WeatherAPI_terraform-rg
+        terraform import azurerm_resource_group.jtaylor_resource_grp /subscriptions/27043551-015b-4974-8b81-0f41830b002e/resourceGroups/WeatherAPI_terraform-rg
       
         terraform apply -input=false -auto-approve
       name: RunTerraform
